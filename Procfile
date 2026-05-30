@@ -1,1 +1,1 @@
-web: pip install -r requirements.txt && python app.py
+web: pip install flask ccxt pandas pandas_ta yfinance && python app.py
