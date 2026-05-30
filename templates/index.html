@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+from flask import render_template
+
+@app.route('/')
+def home():
+    return render_template('index.html') # ชื่อไฟล์หน้าเว็บของคุณ
 <html>
 <body>
     <h1>Crypto Bot</h1>
