@@ -1,10 +1,17 @@
-from flask import Flask, render_template  # 1. เพิ่ม render_template เข้ามา
-import threading
 import os
+import threading
+from flask import Flask
 
 app = Flask(__name__)
 
-# ... (ฟังก์ชัน run_bot ของคุณ) ...
+# สมมติว่านี่คือฟังก์ชันบอทของคุณ
+def run_bot():
+    # โค้ดบอทเทรดของคุณอยู่ที่นี่
+    print("Bot is running...")
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
 
 @app.route('/')
 def home():
