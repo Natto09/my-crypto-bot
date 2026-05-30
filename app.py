@@ -1,16 +1,23 @@
-from flask import Flask, render_template
-import threading, time
 import os
+import threading
+from flask import Flask
 
 app = Flask(__name__)
 
-bot_data = {"status": "Running", "balance": "1,000 USDT"}
+# สมมติว่านี่คือฟังก์ชันบอทของคุณ
+def run_bot():
+    # โค้ดบอทเทรดของคุณอยู่ที่นี่
+    print("Bot is running...")
 
 @app.route('/')
-def index():
-    return render_template('index.html', data=bot_data)
+def home():
+    return "Bot is alive!"
 
 if __name__ == '__main__':
-    # บรรทัดนี้สำคัญ: Railway จะส่งค่า PORT มาให้ ถ้าไม่มีจะใช้ 5000
-    port = int(os.environ.get('PORT', 5000))
+    # 1. สั่งให้บอทเริ่มทำงานในเบื้องหลัง (Background Thread)
+    bot_thread = threading.Thread(target=run_bot)
+    bot_thread.start()
+
+    # 2. ให้ Flask รันเป็นหลักเพื่อตอบรับ Railway
+    port = int(os.environ.get('PORT', 8080)) # ปรับตามที่ Logs ของคุณแสดงคือ 8080
     app.run(host='0.0.0.0', port=port)
