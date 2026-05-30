@@ -13,6 +13,11 @@ def run_bot():
 def home():
     return "Bot is alive!"
 
+@app.route('/status')
+def status():
+    # สมมติว่าคุณมีตัวแปรเก็บสถานะการเทรดในบอท
+    return f"Bot Status: Running. Last Trade: ..."
+ 
 if __name__ == '__main__':
     # 1. สั่งให้บอทเริ่มทำงานในเบื้องหลัง (Background Thread)
     bot_thread = threading.Thread(target=run_bot)
